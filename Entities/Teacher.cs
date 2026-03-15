@@ -6,6 +6,6 @@
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public Department? Department { get; set; }
-        public ICollection<Course>? Courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }  
     }
 }
