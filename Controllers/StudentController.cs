@@ -6,14 +6,9 @@ namespace Student_Management_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentController : ControllerBase
+    public class StudentController(IStudent repository) : ControllerBase
     {
-        private readonly IStudent _repository;
-
-        public StudentController(IStudent repository)
-        {
-            _repository = repository;
-        }
+        private readonly IStudent _repository = repository;
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
