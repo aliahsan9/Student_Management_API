@@ -9,7 +9,7 @@ namespace Student_Management_API.Controllers
     public class StudentController(IStudent repository) : ControllerBase
     {
         private readonly IStudent _repository = repository;
-// Endpoints here
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
