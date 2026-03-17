@@ -1,11 +1,13 @@
-﻿namespace Student_Management_API.Interfaces
+﻿using Student_Management_API.Entities;
+
+namespace Student_Management_API.Interfaces
 {
     public interface IEnrollment
     {
-        public void GetAll();
-        public void GetByIdAsync();
-        public void AddAsync();
-        public void UpdateAsync();
-        public void DeleteAsync(); 
+        Task<IEnumerable<Enrollment>> GetAllAsync();
+        Task<Enrollment> GetByIdAsync(int id);
+        Task AddAsync(Enrollment enrollment);
+        Task UpdateAsync(Enrollment enrollment);
+        Task<Enrollment> DeleteAsync(int id);
     }
 }
