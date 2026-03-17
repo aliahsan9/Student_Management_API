@@ -14,6 +14,10 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Repositories
 builder.Services.AddScoped<IStudent, StudentRepository>();
+builder.Services.AddScoped<ITeacher, TeacherRepository>();
+builder.Services.AddScoped<IDepartment, DepartmentRepository>();
+builder.Services.AddScoped<ICourse, CourseRepository>();
+builder.Services.AddScoped<IEnrollment, EnrollmentRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
