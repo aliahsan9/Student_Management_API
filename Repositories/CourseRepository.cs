@@ -6,7 +6,7 @@ using Student_Management_API.Interfaces;
 
 namespace Student_Management_API.Repositories
 {
-    public class CourseRepository : ICourse   
+    public class CourseRepository : ICourse    
     {
         private readonly AppDbContext _context;
         public CourseRepository(AppDbContext context)
@@ -20,6 +20,7 @@ namespace Student_Management_API.Repositories
         public async Task<Course?> GetByIdAsync(int id) 
         {
             return await _context.Courses.FindAsync(id);
+            
         }
         public async Task AddAsync(Course course)
         {
@@ -31,14 +32,14 @@ namespace Student_Management_API.Repositories
              _context.Courses.Update(course);
             await _context.SaveChangesAsync();
         }
-        public async Task<Course> DeleteAsync(int id)
+        public async Task<Course> DeleteAsync(int id)   
         {
             var course = await _context.Courses.FindAsync(id);
             if (course == null)
                 return null!;
              _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
-            return course;
+            return course;                                
         }
 
     }

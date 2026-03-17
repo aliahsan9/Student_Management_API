@@ -9,7 +9,7 @@ namespace Student_Management_API.Repositories
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<IEnumerable<Department>> GetAll()
+        public async Task<IEnumerable<Department>> GetAllAsync()  
         {
             return await _context.Departments.ToListAsync();
         }

@@ -12,7 +12,7 @@ namespace Student_Management_API.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<Enrollment>> GetAll()
+        public async Task<IEnumerable<Enrollment>> GetAllAsync() 
         {
            return await _context.Enrollments.ToListAsync();
         }

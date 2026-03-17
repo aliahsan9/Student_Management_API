@@ -9,6 +9,5 @@ namespace Student_Management_API.Interfaces
         Task AddAsync(Course course);
         Task UpdateAsync(Course course);
         Task<Course> DeleteAsync(int id);
-        Task<Course> DeleteAsync(Course course);
     }
-}
+}                                                   

@@ -13,7 +13,7 @@ namespace Student_Management_API.Controllers
     [HttpGet]
     public async Task<IActionResult> GetAll()
         {
-            await _repository.GetAll();
+            await _repository.GetAllAsync(); 
             return Ok();
         }
         [HttpGet("{id}")]
