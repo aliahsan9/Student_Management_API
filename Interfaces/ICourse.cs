@@ -1,11 +1,14 @@
-﻿namespace Student_Management_API.Interfaces
+﻿using Student_Management_API.Entities;
+
+namespace Student_Management_API.Interfaces
 {
     public interface ICourse
     {
-        public void GetAll();
-        public void GetByIdAsync();
-        public void AddAsync();
-        public void UpdateAsync();
-        public void DeleteAsync(); 
+        Task<IEnumerable<Course>> GetAllAsync();
+        Task<Course> GetByIdAsync(int id);
+        Task AddAsync(Course course);
+        Task UpdateAsync(Course course);
+        Task<Course> DeleteAsync(int id);
+
     }
 }
