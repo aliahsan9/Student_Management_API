@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Student_Management_API.Data;
 using Student_Management_API.Entities;
 using Student_Management_API.Interfaces;
@@ -16,13 +16,9 @@ namespace Student_Management_API.Repositories
         {
            return await _context.Enrollments.ToListAsync();
         }
-        public async Task<Enrollment> GetByIdAsync(int id)
+        public async Task<Enrollment?> GetByIdAsync(int id)
         {
-            var enrollment = await _context.Enrollments.FindAsync(id);
-            if (enrollment == null)
-                return null!;
-            await _context.Enrollments.FindAsync(enrollment);
-            return enrollment;
+            return await _context.Enrollments.FindAsync(id);
         }
         public async Task AddAsync(Enrollment enrollment)
         {
@@ -34,11 +30,11 @@ namespace Student_Management_API.Repositories
              _context.Enrollments.Update(enrollment);
             await _context.SaveChangesAsync();
         }
-        public async Task<Enrollment> DeleteAsync(int id)
+        public async Task<Enrollment?> DeleteAsync(int id)
         {
             var enrollment = await _context.Enrollments.FindAsync(id);
             if (enrollment == null)
-                return null!;
+                return null;
              _context.Enrollments.Remove(enrollment);
             await _context.SaveChangesAsync();
             return enrollment;

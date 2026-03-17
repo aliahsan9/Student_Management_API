@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Student_Management_API.Entities;
-using Student_Management_API.Repositories;
+using Student_Management_API.Interfaces;
 
 namespace Student_Management_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TeacherController(TeacherRepository repository) : ControllerBase
+    public class TeacherController(ITeacher repository) : ControllerBase
     {
-        private readonly TeacherRepository _repository = repository;
+        private readonly ITeacher _repository = repository;
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -27,23 +26,26 @@ namespace Student_Management_API.Controllers
             return Ok(teacher);
         }
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] Teacher teacher, int id)
+        public async Task<IActionResult> AddAsync([FromBody] Teacher teacher)
         {
             await _repository.AddAsync(teacher);
             return Ok(teacher);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync([FromBody] Teacher teacher,int id)
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody] Teacher teacher)
         {
             if (id != teacher.Id)
                 return BadRequest();
             await _repository.UpdateAsync(teacher);
             return Ok(teacher);
         }
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _repository.DeleteAsync(id);
-            return Ok();
+            var deleted = await _repository.DeleteAsync(id);
+            if (deleted == null)
+                return NotFound();
+            return Ok(deleted);
         }
     }
 }

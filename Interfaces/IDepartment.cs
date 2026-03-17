@@ -1,4 +1,4 @@
-﻿using Student_Management_API.Entities;      
+using Student_Management_API.Entities;      
 
 namespace Student_Management_API.Interfaces
 {
@@ -8,7 +8,7 @@ namespace Student_Management_API.Interfaces
         Task<Department?> GetByIdAsync(int id);
         Task AddAsync(Department department);
         Task UpdateAsync(Department department);
-        Task<Department> DeleteAsync(int id);
+        Task<Department?> DeleteAsync(int id);
 
 
     }

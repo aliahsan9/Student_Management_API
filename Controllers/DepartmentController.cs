@@ -1,32 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Student_Management_API.Entities;
-using Student_Management_API.Repositories;
+using Student_Management_API.Interfaces;
 
 namespace Student_Management_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DepartmentController(DepartmentRepository repository) : ControllerBase
+    public class DepartmentController(IDepartment repository) : ControllerBase
     {
-        private readonly DepartmentRepository _repository = repository;
+        private readonly IDepartment _repository = repository;
    
     [HttpGet]
     public async Task<IActionResult> GetAll()
         {
-            await _repository.GetAllAsync(); 
-            return Ok();
+            var departments = await _repository.GetAllAsync(); 
+            return Ok(departments);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            await _repository.GetByIdAsync(id);
-            return Ok();
+            var department = await _repository.GetByIdAsync(id);
+            if (department == null)
+                return NotFound();
+            return Ok(department);
         }
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] Department department)
         {
             await _repository.AddAsync(department);
-            return Ok();
+            return Ok(department);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsync(int id, [FromBody] Department department)
@@ -34,13 +36,15 @@ namespace Student_Management_API.Controllers
             if (id != department.Id)
                 return BadRequest(department);
             await _repository.UpdateAsync(department);
-            return Ok();
+            return Ok(department);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _repository.DeleteAsync(id);
-            return Ok();
+            var deleted = await _repository.DeleteAsync(id);
+            if (deleted == null)
+                return NotFound();
+            return Ok(deleted);
         }
 
 

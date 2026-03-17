@@ -1,4 +1,3 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Student_Management_API.Data;
 using Student_Management_API.Entities;
@@ -32,11 +31,11 @@ namespace Student_Management_API.Repositories
              _context.Courses.Update(course);
             await _context.SaveChangesAsync();
         }
-        public async Task<Course> DeleteAsync(int id)   
+        public async Task<Course?> DeleteAsync(int id)   
         {
             var course = await _context.Courses.FindAsync(id);
             if (course == null)
-                return null!;
+                return null;
              _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
             return course;                                
