@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.IdentityModel.Tokens;
-using Student_Management_API.Entities;      
+﻿using Student_Management_API.Entities;      
 
 namespace Student_Management_API.Interfaces
 {
