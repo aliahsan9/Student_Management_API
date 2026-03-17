@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Student_Management_API.Entities;
 using Student_Management_API.Interfaces;
+using Student_Management_API.Repositories;
 
 namespace Student_Management_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentController(IStudent repository) : ControllerBase
+    public class StudentController(StudentRepository repository) : ControllerBase
     {
-        private readonly IStudent _repository = repository;
+        private readonly StudentRepository _repository = repository;
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
