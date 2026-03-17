@@ -38,11 +38,9 @@ namespace Student_Management_API.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id, [FromBody] Department department)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            if (id != department.Id)
-                return BadRequest(department);
-            await _repository.DeleteAsync(department);
+            await _repository.DeleteAsync(id);
             return Ok();
         }
 
