@@ -1,11 +1,15 @@
-﻿namespace Student_Management_API.Interfaces
+﻿using Student_Management_API.Entities;
+
+namespace Student_Management_API.Interfaces
 {
     public interface ITeacher
     {
-        public void GetAll();
-        public void GetByIdAsync();
-        public void AddAsync();
-        public void UpdateAasync();
-        public void DeleteAsync();
+        Task<IEnumerable<Teacher>> GetAllAsync();
+        Task<Teacher?> GetByIdAsync(int id);
+        Task AddAsync(Teacher teacher);
+        Task UpdateAsync(Teacher teacher);
+        Task<Teacher> DeleteAsync(int id);
+
+
     }
 }
