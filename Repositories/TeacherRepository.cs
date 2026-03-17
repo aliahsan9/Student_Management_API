@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Student_Management_API.Data;
 using Student_Management_API.Entities;
+using Student_Management_API.Interfaces;
 
 namespace Student_Management_API.Repositories
 {
-    public class TeacherRepository
+    public class TeacherRepository(AppDbContext context) : ITeacher
     {
-        private readonly AppDbContext _context;
-        public TeacherRepository(AppDbContext context)
-        {
-            _context = context;
-        }
-   
+        private readonly AppDbContext _context = context;
+
         public async Task<IEnumerable<Teacher>> GetAllAsync()
         {
             return await _context.Teachers.ToListAsync();
