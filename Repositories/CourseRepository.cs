@@ -8,7 +8,7 @@ namespace Student_Management_API.Repositories
 {
     public class CourseRepository : ICourse   
     {
-        private readonly AppDbContext _context; // hello
+        private readonly AppDbContext _context;
         public CourseRepository(AppDbContext context)
         {
             _context = context;
